@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <report
+                id="account_patient"
+                model="hospital.patient"
+                string="Patient Report"
+                report_type="qweb-html"
+                name="hospital.report_patient"
+                file="hospital.report_patient"
+        />
+
+<!--    <record id="fleet_job_card_format" model="hospital.patient">-->
+<!--        <field name="name">Patient Card</field>-->
+<!--        <field name="default" eval="False"/>-->
+<!--        <field name="format">custom</field>-->
+<!--        <field name="page_height">320</field>-->
+<!--        <field name="page_width">220</field>-->
+<!--        <field name="orientation">Portrait</field>-->
+<!--        <field name="margin_top">0</field>-->
+<!--        <field name="margin_bottom">0</field>-->
+<!--        <field name="margin_left">10</field>-->
+<!--        <field name="margin_right">10</field>-->
+<!--        <field name="header_line" eval="False"/>-->
+<!--        <field name="header_spacing">10</field>-->
+<!--        <field name="dpi">90</field>-->
+<!--    </record>-->
+</odoo>

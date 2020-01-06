@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <report
+            id="account_doctor"
+            model="hospital.doctor"
+            string="Doctor Report"
+            report_type="qweb-html"
+            name="hospital.report_doctor"
+            file="hospital.report_doctor"
+    />
+</odoo>

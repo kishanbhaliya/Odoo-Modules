@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <report
+            id="account_payment"
+            model="hospital.payment"
+            string="Payment Report"
+            report_type="qweb-html"
+            name="hospital.report_payment"
+            file="hospital.report_payment"
+    />
+</odoo>

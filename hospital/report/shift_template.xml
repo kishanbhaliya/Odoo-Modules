@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_shift">
+        <t t-call="web.html_container">
+            <!--            <t t-foreach="docs" t-as="o">-->
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Shift Report</h2>
+                    <p>
+                        <span t-esc="start_date"/>
+                    </p>
+                    <p>
+                        <span t-esc="end_date"/>
+                    </p>
+                    <tr t-foreach="docs" t-as="line">
+                        <td>
+                            <p>Name is :
+                                <span t-esc="line['name']"/>
+                            </p>
+                            <p>Start Date :
+                                <span t-esc="line['start_date']"/>
+                            </p>
+                            <p>End Date :
+                                <span t-esc="line['end_date']"/>
+                            </p>
+                        </td>
+                    </tr>
+                </div>
+            </t>
+        </t>
+        <!--        </t>-->
+    </template>
+</odoo>

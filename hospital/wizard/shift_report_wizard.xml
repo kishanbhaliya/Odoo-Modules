@@ -1,0 +1,35 @@
+<odoo>
+    <record model="ir.ui.view" id="shift_report_wizard_view">
+        <field name="name">Hospital Shift Report</field>
+        <field name="model">shift.report.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="start_date"/>
+x                    </group>
+                    <group>
+                        <field name="end_date"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="get_report" string="Get Report" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_shift_report_wizard" model="ir.actions.act_window">
+        <field name="name">Check Report</field>
+        <field name="res_model">shift.report.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <act_window id="action_view_home" name="Hospital Shift Report" res_model="shift.report.wizard" view_mode="form" target="new"/>
+
+    <menuitem id="menu_shift" parent="menu_hospital_main" action="action_shift_report_wizard"/>
+</odoo>

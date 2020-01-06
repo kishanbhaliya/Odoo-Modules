@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <report
+            id="doctor_shift"
+            model="shift.shift"
+            string="Shift Report"
+            report_type="qweb-html"
+            name="hospital.report_shift"
+            file="hospital.report_shift"
+    />
+</odoo>

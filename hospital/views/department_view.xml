@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_department_tree" model="ir.ui.view">
+        <field name="name">department.tree</field>
+        <field name="model">hospital.department</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_department_form" model="ir.ui.view">
+        <field name="name">department.form</field>
+        <field name="model">hospital.department</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="p_name"/>
+                    <field name="occupation"/>
+                    <field name="exp"/>
+                    <field name="hospital_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="action_department" model="ir.actions.act_window">
+        <field name="name">Department</field>
+        <field name="res_model">hospital.department</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+    </record>
+    <menuitem id="menu_department" parent="menu_hospital_main" action="action_department"/>
+
+</odoo>

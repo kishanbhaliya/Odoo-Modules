@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Shift Tree View -->
+    <record id="view_shift_tree" model="ir.ui.view">
+        <field name="name">shift.tree</field>
+        <field name="model">shift.shift</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="hospital_id"/>
+                <field name="shift"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <!--                <field name="shift_type"/>-->
+            </tree>
+        </field>
+    </record>
+
+    <!-- Shift Form -->
+    <record id="view_shift_form" model="ir.ui.view">
+        <field name="name">shift.form</field>
+        <field name="model">shift.shift</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="%(hospital.action_shift_report_wizard)d" string="Get Report" type="action"
+                            class="oe_highlight"/>
+                    <button name="action_create" string="Create" type="object"/>
+                    <button name="draft_shift" string="Draft" type="object"/>
+                    <button name="start_shift" string="Start" type="object"
+                            style="color: white;background-color:green"/>
+                    <button name="end_shift" string="End" type="object" class="btn-primary"/>
+                    <button name="cancel_shift" string="Cancel" type="object"
+                            style="color: white;background-color: black;"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,start,end"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_inline oe_state_button" type="action" string="Opportunity" align="right"
+                                icon="fa-star" widget="statinfo"/>
+                        <button type="action" class="oe_stat_button"
+                                icon="fa-pencil-square-o" string="Invoiced" widget="statinfo"/>
+                    </div>
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="hospital_id"/>
+                        <field name="start_date"/>
+                        <field name="patient_id"/>
+                        <field name="end_date"/>
+                        <!--                        <field name="shift_type"/>-->
+                        <field name="shift" widget="radio"/>
+
+                        <!--<field name="exam_type" invisible="1"/>-->
+                    </group>
+                    <separator string="Shift Lines"/>
+                    <field name="shift_lines">
+                        <tree editable="bottom">
+                            <field name="gender"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--Calendar View-->
+    <record id="view_shift_cal" model="ir.ui.view">
+        <field name="name">shift.calendar</field>
+        <field name="model">shift.shift</field>
+        <field name="arch" type="xml">
+            <calendar color="name" date_start="start_date" string="Start">
+                <field name="name"/>
+                <field name="hospital_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="action_shift" model="ir.actions.act_window">
+        <field name="name">Shift</field>
+        <field name="res_model">shift.shift</field>
+        <field name="view_mode">tree,calendar,form</field>
+        <field name="view_type">form</field>
+    </record>
+    <menuitem id="menu_shift" parent="menu_hospital_main" action="action_shift"/>
+
+</odoo>
+

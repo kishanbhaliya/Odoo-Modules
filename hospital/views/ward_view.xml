@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <!-- Ward Tree View-->
+    <record id="view_ward_tree" model="ir.ui.view">
+        <field name="name">ward.tree</field>
+        <field name="model">hospital.ward</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="no"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Ward Search View-->
+    <record id="view_ward_search" model="ir.ui.view">
+        <field name="name">ward.search</field>
+        <field name="model">hospital.ward</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="no"/>
+                <field name="patient_id"/>
+            </search>
+        </field>
+    </record>
+
+    <!--Ward Form View-->
+    <record id="view_ward_form" model="ir.ui.view">
+        <field name="name">ward.form</field>
+        <field name="model">hospital.ward</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="no"/>
+                        <field name="patient_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ward" model="ir.actions.act_window">
+        <field name="name">Emergency Ward</field>
+        <field name="res_model">hospital.ward</field>
+        <field name="view_mode">tree,search,form</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <menuitem id="menu_ward" name="Emergency Ward" parent="menu_hospital_main" action="action_ward"/>
+
+</odoo>

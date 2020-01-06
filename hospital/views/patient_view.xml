@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--Patient Tree view-->
+    <record id="view_patient_tree" model="ir.ui.view">
+        <field name="name">patient.tree</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="age"/>
+                <!--<field name="address"/>-->
+                <field name="number"/>
+                <field name="hospital_id"/>
+                <field name="status"/>
+                <field name="payment_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--Patient Form-->
+    <record id="view_patient_form" model="ir.ui.view">
+        <field name="name">patient.form</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="gender" widget="radio"/>
+                        <field name="age"/>
+                        <field name="city"/>
+                        <field name="image"/>
+                    </group>
+                    <group col="4">
+                        <field name="address"/>
+                        <field name="number"/>
+                        <field name="admit_date"/>
+                        <field name="discharge_date"/>
+                        <field name="status"/>
+                        <field name="hospital_id"/>
+                        <field name="ward_ids"/>
+                        <field name="payment_ids"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--Patient Search view-->
+    <record model="ir.ui.view" id="patient_search_view">
+        <field name="name">patient.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search string="Patient Information">
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="age"/>
+                <field name="city"/>
+                <group expand="0" string="Group By">
+                    <filter name="groupby_name" string="Name" domain="[]" context="{'group_by':'name'}"/>
+                    <filter name="groupby_age" string="Age" domain="[]" context="{'group_by':'age'}"/>
+                </group>
+                <group expand="0" string="Filter By">
+                    <filter name="filterby_name" string="Age is 22" domain="[('age','=',22)]"/>
+                    <filter name="filterby_no" string="Mobile No"
+                            domain="[('number','!=',0)]"/>
+                </group>
+
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="age"/>
+                <field name="status"/>
+                <field name="hospital_id"/>
+                <field name="ward_ids"/>
+
+            </search>
+        </field>
+    </record>
+
+    <record id="view_patient_graph" model="ir.ui.view">
+        <field name="name">patient.graph</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <graph string="Patient">
+                <!--                <field name="name"/>-->
+                <field name="city"/>
+                <!--                <field name="patient_id" type="measure"/>-->
+            </graph>
+        </field>
+    </record>
+
+    <!--Calendar View-->
+    <record id="view_patient_cal" model="ir.ui.view">
+        <field name="name">patient.calendar</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <calendar color="status" date_start="admit_date" date_stop="discharge_date" string="Start">
+                <field name="name"/>
+                <field name="status"/>
+                <!--                <field name="patient_id"/>-->
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+
+    <record id="patient_kanban_view" model="ir.ui.view">
+        <field name="name">patient.kanban</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="status">
+                <field name="name"/>
+                <field name="age"/>
+                <field name="city"/>
+                <field name="color"/>
+                <progressbar field="total"
+                             colors="{&quot;done&quot;: &quot;success&quot;, &quot;blocked&quot;: &quot;danger&quot;}"/>
+                <!--                <field name="image"/>-->
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                                  oe_kanban_global_click_edit oe_semantic_html_override
+                                                  oe_kanban_content {{record.group_fancy==1 ? 'oe_kanban_content_fancy' : ''}}">
+
+                            <div class="oe_dropdown_kanban">
+                                <!-- dropdown menu -->
+                                <div class="oe_dropdown_toggle">
+                                    <i class="fa fa-bars fa-lg"/>
+                                    <ul class="oe_dropdown_menu">
+                                        <li>
+                                            <a type="delete">Delete</a>
+                                        </li>
+                                        <li>
+                                            <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="oe_kanban_content">
+
+                                    <a type="open">
+                                        <field name="name"/>
+                                        <!--set Image Here-->
+                                        <!--                                <t t-if="record.image.raw_value === true">-->
+                                        <!--                                <img t-att-src="kanban_image('hospital.patient','image',record.id.value)"-->
+                                        <!--                                     class="oe_kanban_picture"/>-->
+                                        <!--                                </t>-->
+                                    </a>
+                                    <div class="oe_kanban_details">
+                                        <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
+
+                                        <!--                                <field name="total" widget="guage"/>-->
+
+                                        <br>
+                                            <field name="age"/>
+                                        </br>
+                                        <br>
+                                            <field name="city"/>
+                                        </br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_patient" model="ir.actions.act_window">
+        <field name="name">Patient</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="context">{'name':True}</field>
+        <field name="view_mode">tree,kanban,form,search,graph,calendar</field>
+        <field name="context" eval="{'search_default_filterby_name': 0  }"/>
+        <field name="view_type">form</field>
+    </record>
+
+    <menuitem id="menu_patient" name="Patient" parent="menu_hospital_main" action="action_patient" sequence="4"/>
+</odoo>

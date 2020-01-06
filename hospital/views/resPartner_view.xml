@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_doctor_partner_from_inherited" model="ir.ui.view">
+        <field name="name">view.doctor.partner.from.inherited</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <field name="email" position="after">
+                <field name="age"/>
+                <field name="city"/>
+            </field>
+            <xpath expr='//field[@name="child_ids"]/form/sheet/group/group[2]/field[@name="mobile"]' position="after">
+                <field name="age"/>
+            </xpath>
+            <page name="sales_purchases" position="after">
+                <page name="Other_Doctor" string="Other Info">
+                    <group>
+                        <field name="is_patient"/>
+                        <field name="is_doctor"/>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="action_partner_form" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('is_patient', '=', True)]</field>
+    </record>
+
+    <menuitem id="menu_resPartner_patient" parent="menu_hospital_main" action="action_partner_form"/>
+
+
+    <record id="action_partner_form_inherited" model="ir.actions.act_window">
+        <field name="name">Doctors</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('is_doctor', '=', True)]</field>
+    </record>
+
+    <menuitem id="menu_resPartner" parent="menu_hospital_main" action="action_partner_form_inherited"/>
+
+</odoo>

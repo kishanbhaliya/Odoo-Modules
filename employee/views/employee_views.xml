@@ -1,0 +1,101 @@
+<odoo>
+    <record id="employee_form_view_form" model="ir.ui.view">
+        <field name="name">employee.form.view</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[3][@name='hr_settings']" position="after">
+                <page string="Attachment">
+                    <group string="Upload Your Documents">
+                        <field name="upload_file" filename="file_name"/>
+                        <field name="file_name" invisible="1"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='google_drive_link']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='work_location']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='work_phone']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='emergency_phone']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='km_home_work']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='address_home_id']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='address_home_id']" position="after">
+                <field name='private_address'/>
+            </xpath>
+            <xpath expr="//field[@name='address_id']" position="replace">
+                <field name='badge_id'/>
+            </xpath>
+            <xpath expr="//field[@name='mobile_phone']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='department_id']" position="replace">
+                <field name='team_id'/>
+            </xpath>
+            <xpath expr="//field[@name='job_id']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='resource_calendar_id']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='tz']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='coach_id']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='job_title']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='parent_id']" position="replace">
+                <field name='project_id'/>
+            </xpath>
+            <xpath expr="//field[@name='project_id']" position="after">
+                <field name='joining_date'/>
+            </xpath>
+            <xpath expr="//field[@name='joining_date']" position="after">
+                <field name='last_salary'/>
+            </xpath>
+            <xpath expr="//page[@name='personal_information']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//page[1][@name='public']" position="after">
+                <page string="Private Information">
+                    <group>
+                        <group string="Personal Information">
+                            <field name="f_name"/>
+                            <field name="l_name"/>
+                            <field name="spouse_name"/>
+                            <field name="gender"/>
+                            <field name="marital"/>
+                            <field name="birthday"/>
+                            <field name="age"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                        </group>
+                        <group string="Contact Information">
+                            <field name="temp_address"/>
+                            <field name="perm_address"/>
+                            <field name="emergency_contact"/>
+                            <field name="emergency_name"/>
+                        </group>
+                        <group string="Education">
+                            <field name="education"/>
+                            <field name="school_college"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

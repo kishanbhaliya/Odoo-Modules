@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Doctor Tree view-->
+    <record id="view_doctor_tree" model="ir.ui.view">
+        <field name="name">doctor.tree</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="d_id"/>
+                <field name="age"/>
+                <field name="city"/>
+                <field name="speciality"/>
+                <field name="patient_id"/>
+                <field name="hospital_id"/>
+                <field name="image"/>
+                <field name="file"/>
+                <field name="mbbs" attrs="{'invisible':[('md','=',True),('ms','=',True)]}"/>
+                <field name="md" attrs="{'invisible':[('ms','=',True),('mbbs','=',True)]}"/>
+                <field name="ms" attrs="{'invisible':[('mbbs','=',True),('md','=',True)]}"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--Doctor Form View-->
+    <record id="view_doctor_form" model="ir.ui.view">
+        <field name="name">doctor.form</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <sheet>
+
+                    <group>
+                        <field name="name"/>
+                        <field name="gender"/>
+                        <field name="age"/>
+                        <field name="city"/>
+                        <field name="speciality"/>
+                        <field name="patient_id"/>
+                        <field name="hospital_id"/>
+                        <field name="d_id"/>
+                        <field name="file"/>
+                        <field name="image" widget="image" class="oe_avatar" option="{'size':[50,50]'}"/>
+                        <lable>Select any Two</lable>
+                        <field name="mbbs" attrs="{'invisible':[('md','=',True),('ms','=',True)]}"/>
+                        <field name="md" attrs="{'invisible':[('ms','=',True),('mbbs','=',True)]}"/>
+                        <field name="ms" attrs="{'invisible':[('mbbs','=',True),('md','=',True)]}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--Doctor Kanban View-->
+
+    <record id="doctor_kanban_view" model="ir.ui.view">
+        <field name="name">doctor.kanban</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="gender">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="speciality"/>
+                <field name="city"/>
+                <field name="image"/>
+                <field name="color"/>
+                <progressbar field="maximum_rate"
+                             colors="{&quot;done&quot;: &quot;success&quot;, &quot;blocked&quot;: &quot;danger&quot;}"/>
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                                  oe_kanban_global_click_edit oe_semantic_html_override
+                                                  oe_kanban_content {{record.group_fancy==1 ? 'oe_kanban_content_fancy' : ''}}">
+                            <div class="oe_dropdown_kanban">
+                                <!-- dropdown menu -->
+                                <div class="oe_dropdown_toggle">
+                                    <i class="fa fa-bars fa-lg"/>
+                                    <ul class="oe_dropdown_menu">
+                                        <li>
+                                            <a type="delete">Delete</a>
+                                        </li>
+                                        <li>
+                                            <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="oe_kanban_content">
+                                    <a type="open">
+                                        <!--                                &lt;!&ndash;set Image Here&ndash;&gt;-->
+                                        <!--                                &lt;!&ndash;                                <t t-if="record.image.raw_value === true">&ndash;&gt;-->
+                                        <img t-att-src="kanban_image('hospital.doctor','image',record.id.value)"
+                                             class="oe_kanban_picture" style="max-height:50px;max-width:50px;"/>
+                                        <!--                                </t>-->
+                                    </a>
+                                    <div class="oe_kanban_details">
+                                        <div class="o_kanban_tags_section oe_kanban_top"/>
+                                        <ul style="position:relative;left:90px">
+
+
+                                            <field name="maximum_rate" widget="guage"/>
+
+                                            <li>
+                                                <field name="name"/>
+                                            </li>
+
+                                            <li>
+                                                <field name="speciality"/>
+                                            </li>
+
+                                            <li>
+                                                <field name="city"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="action_doctor" model="ir.actions.act_window">
+        <field name="name">Doctor</field>
+        <field name="res_model">hospital.doctor</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <menuitem id="menu_doctor" name="Doctor" parent="menu_hospital_main" action="action_doctor" sequence="3"/>
+
+</odoo>

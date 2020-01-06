@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="exit_checklist_form" model="ir.ui.view">
+        <field name="name">exit_checklist.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <page name="hr_settings" position="after">
+                <page name="exit_checklist_info" string="Exit Checklist">
+                    <group string="Particular">
+                        <lable for="supervisor_approve">
+                            <b>Did Supervisor Approved registration by replying to employee
+                                mail and CC to HR?
+                            </b>
+                        </lable>
+                        <input type="checkbox"/>
+
+                        <lable for="notice">
+                            <b>Has he/she completed notice period time?</b>
+                        </lable>
+                        <input type="checkbox"/>
+
+                        <lable for="resource">
+                            <b>Have we given any resource to him? Has he submitted that back to company?(headphone,
+                                simcard, ID card etc)
+                            </b>
+                        </lable>
+                        <input type="checkbox"/>
+
+                        <lable for="check_receipt">
+                            <b>Cheque Receipt received?</b>
+                        </lable>
+                        <input type="checkbox"/>
+
+                        <lable for="security">
+                            <b>Security Cheque given back?</b>
+                        </lable>
+                        <input type="checkbox"/>
+
+                        <lable for="loan">
+                            <b>All loan paid?</b>
+                        </lable>
+                        <input type="checkbox"/>
+
+                        <lable for="pf_no">
+                            <b>PF no. given to emp?</b>
+                        </lable>
+                        <input type="checkbox"/>
+
+                        <lable for="esi_no">
+                            <b>ESI no. given to emp?</b>
+                        </lable>
+                        <input type="checkbox"/>
+
+                        <lable for="tsd_cut">
+                            <b>TDS need to cut?</b>
+                        </lable>
+                        <input type="checkbox"/>
+
+                        <lable for="tds_certificate">
+                            <b>TDS certificate given?</b>
+                        </lable>
+                        <input type="checkbox"/>
+
+                        <lable for="experience">
+                            <b>Experience letter must be as per he worked for company</b>
+                        </lable>
+                        <input type="checkbox"/>
+
+                        <lable for="complete_notice">
+                            <b>Has he/she completed notice period time?</b>
+                        </lable>
+                        <input type="checkbox"/>
+
+                        <lable for="non_due">
+                            <b>Non Due Certificate signed</b>
+                        </lable>
+                        <input type="checkbox"/>
+
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

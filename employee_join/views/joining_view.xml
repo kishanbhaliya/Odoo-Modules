@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="joining_form" model="ir.ui.view">
+        <field name="name">joining.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <page name="hr_settings" position="after">
+                <page name="joining_info" string="Joining Process">
+                    <group col="2">
+                        <field name="progress_rate" widget="progressbar"/>
+                    </group>
+                    <group col="2">
+                        <group string=" For Employee Joining">
+                            <lable for="id_proof">
+                                <b>ID Proof</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="address_proof">
+                                <b>Address Proof</b>
+                            </lable>
+
+                            <input type="checkbox"/>
+                            <lable for="exp_letter">
+                                <b>If he has experience than Experience letter</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="computer_no">
+                                <b>Computer alloted no</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="biomatric_code">
+                                <b>Biomatric Code</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="access_code">
+                                <b>Access card code no</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="pancard">
+                                <b>Pan Card</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="final_degree">
+                                <b>Final degree copy</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="nda">
+                                <b>NDA</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="cheque_scan">
+                                <b>Cheque Scanned copy</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="bank_account_no">
+                                <b>Bank Account no</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="pf_form">
+                                <b>PF form 11</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="esic">
+                                <b>ESIC</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="background_check_detail">
+                                <b>Background Check detail</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="background_verification">
+                                <b>With whom spoek for background verification</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="alternate_email">
+                                <b>Alternate email id</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="phone">
+                                <b>Alternate phone no</b>
+                            </lable>
+                            <input type="checkbox"/>
+                        </group>
+                        <group string="New Joining Process">
+                            <lable for="emp_add">
+                                <b>New Employee added in Group Broad cast?</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="verify_phone">
+                                <b>Did You Verify home and other phone no?</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="background_check">
+                                <b>Background Check?</b>
+                            </lable>
+                            <input type="checkbox"/>
+
+                            <lable for="nda_sign">
+                                <b>NDA sign</b>
+                            </lable>
+                            <input type="checkbox"/>
+                        </group>
+                    </group>
+
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

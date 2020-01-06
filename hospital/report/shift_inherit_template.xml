@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_shift_inherit" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@class='row mt32 mb32']/div[@ t-if='doc.user_id.name']" position="replace">
+            <div>
+                <strong>Salesman:</strong>
+                <p t-field="doc.user_id"/>
+            </div>
+                <xpath expr="//div[@class='row mt32 mb32']/div[@ t-if='doc.payment_term_id']" position="replace">
+                    <strong>Payment:</strong>
+                    <p t-field="doc.payment_term_id"/>
+                </xpath>
+        </xpath>
+        <xpath expr="//div[@class='row mt32 mb32']/div[5]"
+               position="replace">
+
+                <strong>Expiration:</strong>
+                <p t-field="doc.validity_date"/>
+
+        </xpath>
+        <xpath expr="//table[@class='table table-condensed']/thead/tr" position="replace">
+            <th>Description</th>
+            <th class="text-right">Quantity</th>
+            <th class="text-right">Unit Price</th>
+            <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">Disc.(%)</th>
+            <th class="text-right">Tax</th>
+            <th class="text-right" groups="sale.group_show_price_subtotal">Amount</th>
+            <th class="text-right price_tax_included" groups="sale.group_show_price_total">Total Price</th>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_payment_tree" model="ir.ui.view">
+        <field name="name">payment.tree</field>
+        <field name="model">hospital.payment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="patient_id"/>
+                <field name="payment"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_payment_form" model="ir.ui.view">
+        <field name="name">payment.form</field>
+        <field name="model">hospital.payment</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="%(hospital.action_view_wizard)d" string="Total Charge" type="action"
+                            class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group col="4">
+                        <field name="patient_id"/>
+                        <field name="payment"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_payment" model="ir.actions.act_window">
+        <field name="name">Payment</field>
+        <field name="res_model">hospital.payment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+    </record>
+    <menuitem id="menu_payment" parent="menu_hospital_main" action="action_payment"/>
+
+</odoo>
